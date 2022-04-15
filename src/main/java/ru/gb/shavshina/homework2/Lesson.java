@@ -1,10 +1,13 @@
 package ru.gb.shavshina.homework2;
 
 public class Lesson {
+
     public static void main(String[] args) {
         System.out.println(twoNumber(15, 15));
+
         dashesOfNumber(100);
         System.out.println(newNumber(-28));
+        printWord("Лето,где ты???!!", 10);
     }
 
     public static boolean twoNumber(int a, int b) {
@@ -32,4 +35,12 @@ public class Lesson {
         }
     }
 
+    public static void printWord(String word, int times) {
+        for (int i = 0; i < times; i++){
+            System.out.println(word);
+        }
+    }
 }
+
+
+
