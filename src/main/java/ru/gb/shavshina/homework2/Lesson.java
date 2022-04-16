@@ -8,6 +8,7 @@ public class Lesson {
         dashesOfNumber(100);
         System.out.println(newNumber(-28));
         printWord("Лето,где ты???!!", 10);
+        System.out.println(checkYear(1900));
     }
 
     public static boolean twoNumber(int a, int b) {
@@ -38,6 +39,13 @@ public class Lesson {
     public static void printWord(String word, int times) {
         for (int i = 0; i < times; i++){
             System.out.println(word);
+        }
+    }
+    public static boolean checkYear(int year) {
+        if (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0)) {
+            return false;
+        } else {
+            return true;
         }
     }
 }
