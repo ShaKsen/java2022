@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Lesson4 {
 
-        public static int SIZE = 3;
-        public static int DOTS_TO_WIN = 3;
+        public static final int SIZE = 5;
+        public static int DOTS_TO_WIN = 4;
         public static final char DOT_EMPTY = '•';
         public static final char DOT_X = 'X';
         public static final char DOT_O = 'O';
@@ -42,32 +42,36 @@ public class Lesson4 {
         System.out.println("Игра закончена");
             }
         public static boolean checkWin(char symb) {
-            if(map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) {
+        int diag1, diag2, hor, ver;
+        for (int i = 0; i < SIZE; i++) {
+            hor = 0; ver = 0;
+            for (int j = 0; j < SIZE; j++) {
+                if (map[i][j] == symb) {
+                    hor++;
+                }
+                if (map[j][i] == symb) {
+                    ver++;
+                }
+            }
+            if (hor == DOTS_TO_WIN|| ver == DOTS_TO_WIN) {
                 return true;
             }
-            if(map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) {
-                return true;
+        }
+        diag1 = 0; diag2 = 0;
+        for (int i = 0; i < SIZE; i++) {
+            if (map[i][i] == symb) {
+                diag1++;
             }
-            if (map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) {
-                return true;
+            if (map[i][SIZE - i - 1] == symb) {
+                diag2++;
             }
-            if (map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) {
-                return true;
-            }
-            if (map[0][1] == symb && map[1][1] == symb && map[2][1] == symb){
-                return true;
-            }
-            if (map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) {
-                return true;
-            }
-            if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) {
-                return true;
-            }
-            if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) {
-                return true;
-            }
-            return false;
-            }
+        }
+        if (diag1 == DOTS_TO_WIN || diag2 == DOTS_TO_WIN) {
+            return true;
+        }
+        return false;
+    }
+
     public static boolean isMapFull() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -78,6 +82,7 @@ public class Lesson4 {
             }
         return true;
             }
+
     public static void aiTurn() {
         int x, y;
         do {
@@ -92,7 +97,7 @@ public class Lesson4 {
     public static void humanTurn() {
         int x, y;
         do {
-            System.out.println("Введите координаты в формате X Y");
+            System.out.println("Введите координаты X Y через пробел");
             x = sc.nextInt() - 1;
             y = sc.nextInt() - 1;
         }
